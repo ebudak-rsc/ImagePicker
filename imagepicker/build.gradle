@@ -119,24 +119,3 @@ dependencies {
     androidTestImplementation 'androidx.test:core:1.5.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }
-
-ext {
-    PUBLISH_GROUP_ID = 'com.github.Drjacky'
-    PUBLISH_VERSION = rootProject.ext.versionName
-    PUBLISH_ARTIFACT_ID = 'ImagePicker'
-
-    bintrayRepo = 'ImagePicker'
-    bintrayName = 'ImagePicker'
-
-    publishedGroupId = 'com.github.Drjacky'
-    libraryName = 'ImagePicker'
-    artifact = 'ImagePicker'
-
-    libraryDescription = 'Pick image from Gallery or Capture new image with Camera.'
-
-    libraryVersion = rootProject.ext.versionName
-
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
-}
