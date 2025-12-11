@@ -47,7 +47,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             groupId "net.petsafe"
-            artifactId "image-picker"
+            artifactId "imagepicker"
             version "2.4.0"
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
 
@@ -105,11 +105,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.exifinterface:exifinterface:1.4.2'
     implementation 'androidx.documentfile:documentfile:1.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0'
-    implementation 'androidx.fragment:fragment-ktx:1.8.9'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
 
     //More Info: https://github.com/Yalantis/uCrop
     implementation 'com.github.yalantis:ucrop:2.2.11'

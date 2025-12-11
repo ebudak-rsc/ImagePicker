@@ -27,12 +27,12 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdk 36
+    compileSdk 35
     defaultConfig {
         signingConfig signingConfigs.debug
         applicationId "com.github.drjacky.imagepicker.sample"
         minSdkVersion 23
-        targetSdkVersion 36
+        targetSdkVersion 35
         multiDexEnabled true
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
@@ -57,11 +57,11 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11
+        jvmTarget = JavaVersion.VERSION_17
     }
     lintOptions{
         disable 'MissingTranslation'
@@ -78,8 +78,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
     implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.browser:browser:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.browser:browser:1.4.0'
     implementation 'com.google.android.material:material:1.13.0'
 
     testImplementation 'junit:junit:4.13.2'
