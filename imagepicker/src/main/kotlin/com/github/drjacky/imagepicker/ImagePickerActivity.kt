@@ -1,6 +1,5 @@
 package com.github.drjacky.imagepicker
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -17,13 +16,6 @@ import com.github.drjacky.imagepicker.provider.GalleryProvider
 import java.io.File
 import java.io.IOException
 
-/**
- * Pick Image
- *
- * @author Dhaval Patel
- * @version 1.0
- * @since 04 January 2019
- */
 class ImagePickerActivity : AppCompatActivity() {
 
     companion object {
@@ -145,7 +137,7 @@ class ImagePickerActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         mCameraProvider?.onRequestPermissionsResult(requestCode)
@@ -277,14 +269,14 @@ class ImagePickerActivity : AppCompatActivity() {
         val intent = Intent()
         intent.data = uri
         intent.putExtra(ImagePicker.EXTRA_FILE_PATH, uri.path)
-        setResult(Activity.RESULT_OK, intent)
+        setResult(RESULT_OK, intent)
         finish()
     }
 
     private fun setMultipleImageResult(uris: ArrayList<Uri>) {
         val intent = Intent()
         intent.putExtra(ImagePicker.MULTIPLE_FILES_PATH, uris)
-        setResult(Activity.RESULT_OK, intent)
+        setResult(RESULT_OK, intent)
         finish()
     }
 
@@ -292,7 +284,7 @@ class ImagePickerActivity : AppCompatActivity() {
      * User has cancelled the task
      */
     fun setResultCancel() {
-        setResult(Activity.RESULT_CANCELED, getCancelledIntent(this))
+        setResult(RESULT_CANCELED, getCancelledIntent(this))
         finish()
     }
 
@@ -307,5 +299,4 @@ class ImagePickerActivity : AppCompatActivity() {
         setResult(ImagePicker.RESULT_ERROR, intent)
         finish()
     }
-
 }

@@ -16,14 +16,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <include layout="@layout/content_profile" />
+            <include
+                android:id="@+id/content_profile"
+                layout="@layout/content_profile" />
 
-            <include layout="@layout/content_gallery_only" />
+            <include
+                android:id="@+id/content_gallery_only"
+                layout="@layout/content_gallery_only" />
 
-            <include layout="@layout/content_camera_only" />
+            <include
+                android:id="@+id/content_camera_only"
+                layout="@layout/content_camera_only" />
 
         </LinearLayout>
 

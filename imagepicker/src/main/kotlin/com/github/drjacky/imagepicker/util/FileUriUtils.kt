@@ -5,13 +5,16 @@ import android.content.Context
 import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
-import android.os.Build
 import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.webkit.MimeTypeMap
-import java.io.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
 
 /**
  * This file was taken from
@@ -33,10 +36,9 @@ object FileUriUtils {
     }
 
     private fun getPathFromLocalUri(context: Context, uri: Uri): String? {
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
 
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
             // ExternalStorageProvider
             when {
                 isExternalStorageDocument(uri) -> {
@@ -126,7 +128,7 @@ object FileUriUtils {
         context: Context,
         uri: Uri?,
         selection: String?,
-        selectionArgs: Array<String>?
+        selectionArgs: Array<String>?,
     ): String? {
         var cursor: Cursor? = null
         val column = "_data"
@@ -140,22 +142,6 @@ object FileUriUtils {
                 return cursor.getString(index)
             }
         } catch (ex: Exception) {
-        } finally {
-            cursor?.close()
-        }
-        return null
-    }
-
-    private fun getFilePath(context: Context, uri: Uri): String? {
-        var cursor: Cursor? = null
-        val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
-
-        try {
-            cursor = context.contentResolver.query(uri, projection, null, null, null)
-            if (cursor != null && cursor.moveToFirst()) {
-                val index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
-                return cursor.getString(index)
-            }
         } finally {
             cursor?.close()
         }
@@ -218,15 +204,6 @@ object FileUriUtils {
         }
 
         return ".$extension"
-    }
-
-    /**
-     * Get Image Extension i.e. .png, .jpg
-     *
-     * @return extension of image with dot, or default .jpg if it none.
-     */
-    fun getImageExtension(context: Context, file: File): String {
-        return getImageExtension(context, Uri.fromFile(file))
     }
 
     fun getImageExtensionFormat(context: Context, uri: Uri): Bitmap.CompressFormat {

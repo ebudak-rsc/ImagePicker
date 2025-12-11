@@ -23,18 +23,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-/**
- * Crop Selected/Captured Image
- *
- * @author Dhaval Patel
- * @version 1.0
- * @since 04 January 2019
- */
-class CropProvider(activity: ImagePickerActivity, private val launcher: (Intent) -> Unit) :
-    BaseProvider(activity) {
+class CropProvider(activity: ImagePickerActivity, private val launcher: (Intent) -> Unit) : BaseProvider(activity) {
 
     companion object {
-        private val TAG = CropProvider::class.java.simpleName
         private const val STATE_CROP_URI = "state.crop_uri"
     }
 
@@ -122,7 +113,7 @@ class CropProvider(activity: ImagePickerActivity, private val launcher: (Intent)
         cropFreeStyle: Boolean,
         isCamera: Boolean,
         isMultipleFiles: Boolean,
-        outputFormat: Bitmap.CompressFormat?
+        outputFormat: Bitmap.CompressFormat?,
     ) {
         this.isMultipleFiles = isMultipleFiles
         cropImage(
@@ -144,8 +135,9 @@ class CropProvider(activity: ImagePickerActivity, private val launcher: (Intent)
         cropOval: Boolean,
         cropFreeStyle: Boolean,
         isCamera: Boolean,
-        outputFormat: Bitmap.CompressFormat?
+        outputFormat: Bitmap.CompressFormat?,
     ) {
+        print("EFEEEEEE - CropProvider cropImage")
         val path = if (isCamera) {
             Environment.DIRECTORY_DCIM
         } else {
@@ -197,6 +189,7 @@ class CropProvider(activity: ImagePickerActivity, private val launcher: (Intent)
      * This method will be called when final result fot this provider is enabled.
      */
     fun handleResult(result: ActivityResult) {
+        print("EFEEEEEE - CropProvider handleResult: $result")
         if (result.resultCode == Activity.RESULT_OK) {
             val uri = UCrop.getOutput(result.data!!)
             if (uri != null) {

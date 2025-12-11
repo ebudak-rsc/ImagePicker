@@ -1,6 +1,5 @@
 package com.github.drjacky.imagepicker.sample
 
-import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -14,13 +13,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.github.drjacky.imagepicker.ImagePicker
 import com.github.drjacky.imagepicker.constant.ImageProvider
-import com.github.drjacky.imagepicker.sample.util.FileUtil
+import com.github.drjacky.imagepicker.sample.databinding.ActivityMainBinding
 import com.github.drjacky.imagepicker.sample.util.IntentUtil
 import com.github.drjacky.imagepicker.util.IntentUtils
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_camera_only.*
-import kotlinx.android.synthetic.main.content_gallery_only.*
-import kotlinx.android.synthetic.main.content_profile.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,29 +27,31 @@ class MainActivity : AppCompatActivity() {
     private var mGalleryUri: Uri? = null
     private var mProfileUri: Uri? = null
 
+    private lateinit var binding: ActivityMainBinding
+
     private val profileLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
+            if (it.resultCode == RESULT_OK) {
                 val uri = it.data?.data!!
                 mProfileUri = uri
-                imgProfile.setLocalImage(uri, true)
+                binding.contentMain.contentProfile.imgProfile.setLocalImage(uri, true)
             } else {
                 parseError(it)
             }
         }
     private val galleryLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
+            if (it.resultCode == RESULT_OK) {
                 if (it.data?.hasExtra(ImagePicker.EXTRA_FILE_PATH)!!) {
                     val uri = it.data?.data!!
                     mGalleryUri = uri
-                    imgGallery.setLocalImage(uri)
+                    binding.contentMain.contentGalleryOnly.imgGallery.setLocalImage(uri)
                 } else if (it.data?.hasExtra(ImagePicker.MULTIPLE_FILES_PATH)!!) {
                     val files = ImagePicker.getAllFile(it.data) as ArrayList<Uri>
                     if (files.size > 0) {
                         val uri = files[0] // first image
                         mGalleryUri = uri
-                        imgGallery.setLocalImage(uri)
+                        binding.contentMain.contentGalleryOnly.imgGallery.setLocalImage(uri)
                     }
                 } else {
                     parseError(it)
@@ -66,10 +63,11 @@ class MainActivity : AppCompatActivity() {
 
     private val cameraLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            if (it.resultCode == Activity.RESULT_OK) {
+            print("EFEEEEEE - cameraLauncher it.resultCode: ${it.resultCode}")
+            if (it.resultCode == RESULT_OK) {
                 val uri = it.data?.data!!
                 mCameraUri = uri
-                imgCamera.setLocalImage(uri, false)
+                binding.contentMain.contentCameraOnly.imgCamera.setLocalImage(uri, false)
             } else {
                 parseError(it)
             }
@@ -86,9 +84,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
-        imgProfile.setDrawableImage(R.drawable.ic_person, true)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        binding.contentMain.contentProfile.imgProfile.setDrawableImage(R.drawable.ic_person, true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -148,30 +147,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showImage(view: View) {
-        val uri = when (view) {
-            imgProfile -> mProfileUri
-            imgCamera -> mCameraUri
-            imgGallery -> mGalleryUri
-            else -> null
-        }
-
-        uri?.let {
-            startActivity(IntentUtils.getUriViewIntent(this, uri))
+        getUri(view)?.let { uri ->
+            startActivity(IntentUtils.getUriViewIntent(this@MainActivity, uri))
         }
     }
 
     fun showImageInfo(view: View) {
-        val uri = when (view) {
-            imgProfileInfo -> mProfileUri
-            imgCameraInfo -> mCameraUri
-            imgGalleryInfo -> mGalleryUri
+        getUri(view)?.let { uri ->
+            AlertDialog.Builder(this)
+                .setTitle("Image Info")
+//                .setMessage(FileUtil.getFileInfo(this, uri))
+                .setPositiveButton("Ok", null)
+                .show()
+        }
+    }
+
+    private fun getUri(view: View): Uri? = with(binding.contentMain) {
+        when (view) {
+            contentProfile.imgProfile -> mProfileUri
+            contentCameraOnly.imgCamera -> mCameraUri
+            contentGalleryOnly.imgGallery -> mGalleryUri
             else -> null
         }
-
-        AlertDialog.Builder(this)
-            .setTitle("Image Info")
-            .setMessage(FileUtil.getFileInfo(this, uri))
-            .setPositiveButton("Ok", null)
-            .show()
     }
 }
