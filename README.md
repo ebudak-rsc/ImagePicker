@@ -1,5 +1,7 @@
 # 📸Image Picker Library for Android
-### This repo is originated from [ImagePicker](https://github.com/Drjacky/ImagePicker)
+### This repo is originated from [ImagePicker](https://github.com/Drjacky/ImagePicker) by [Drjacky](https://github.com/Drjacky)
+
+# ImagePicker
 
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=23)
 ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
