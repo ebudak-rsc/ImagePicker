@@ -1,12 +1,9 @@
 # 📸Image Picker Library for Android
+### This repo is originated from [ImagePicker](https://github.com/Drjacky/ImagePicker)
 
-[![Releases](https://img.shields.io/github/release/drjacky/imagePicker/all.svg?style=flat-square)](https://github.com/drjacky/ImagePicker/releases)
-[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
+[![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=23)
 ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
-[![PRWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Drjacky/ImagePicker/pulls)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FDrjacky%2FImagePicker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FDrjacky%2FImagePicker?ref=badge_shield)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ImagePicker-green.svg?style=flat)](https://android-arsenal.com/details/1/8208)
-![Language](https://img.shields.io/badge/Kotlin-1.7.21-blue)
+![Language](https://img.shields.io/badge/Kotlin-1.9.21-blue)
 
 Easy to use and configurable library to **Pick an image from the Gallery or Capture image using Camera**. It also allows to **Crop the Image based on Aspect Ratio, Resolution and Image Size**.
 
@@ -20,15 +17,7 @@ Easy to use and configurable library to **Pick an image from the Gallery or Capt
 * Retrieve Image Result as File, File Path as String or Uri object
 * Handle Runtime Permission for Camera and Storage
 
-## 🎬Preview
-
-
-   Profile Image Picker    |         Gallery Only      |       Camera Only        |
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/Drjacky/ImagePicker/blob/master/art/imagepicker_profile_demo.gif)  |  ![](https://github.com/Drjacky/ImagePicker/blob/master/art/imagepicker_gallery_demo.gif)  |  ![](https://github.com/Drjacky/ImagePicker/blob/master/art/imagepicker_camera_demo.gif)
-
 ## 💻Usage
-
 
 Gradle dependency:
 
@@ -46,7 +35,7 @@ Gradle dependency:
 ```
 
 Where `$libVersion`
-= [![libVersion](https://img.shields.io/github/release/drjacky/imagePicker/all.svg?style=flat-square)](https://github.com/drjacky/ImagePicker/releases)
+= [![libVersion](https://img.shields.io/badge/2.4.1-blue)](https://github.com/ebudak-rsc/ImagePicker/tags)
 
 ## 🎨Customization
 
