@@ -3,9 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 apply from: "../ktlint.gradle"
 
-final Properties githubProperties = new Properties()
-githubProperties.load(new FileInputStream('ps-github.properties'))
-
 android {
     compileSdkVersion 35
     defaultConfig {
