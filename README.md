@@ -42,7 +42,7 @@ Gradle dependency:
 ```
 
 ```groovy
-   implementation 'com.github.Drjacky:ImagePicker:$libVersion'
+   implementation 'com.github.ebudak-rsc:ImagePicker:$libVersion'
 ```
 
 Where `$libVersion`
@@ -222,8 +222,8 @@ ImagePicker.with(this)
 
 ## 💥Compatibility
 
-  * Library - Android Kitkat 4.4+ (API 19)
-  * Sample - Android Kitkat 4.4+ (API 19)
+  * Library - Android 7+ (API 23)
+  * Sample - Android 7+ (API 23)
 
 ## 📃 Libraries Used
 * uCrop [https://github.com/Yalantis/uCrop](https://github.com/Yalantis/uCrop)
