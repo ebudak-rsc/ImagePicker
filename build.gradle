@@ -20,17 +20,6 @@ allprojects {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/RSC-IoT/ps-maven-repo")
-            credentials {
-                final Properties githubProperties = new Properties()
-                githubProperties.load(new FileInputStream('ps-github.properties'))
-
-                username = githubProperties["psgh.usr"]
-                password = githubProperties["psgh.key"]
-            }
-        }
     }
 }
 
